@@ -183,8 +183,10 @@
 <ul>
 <li>
 <p>使用底下 UUID 修改 LAB 1 的 aes 專案，根據<a href="ta-signing.html">簽署操作流程</a>生成 <code>.ta</code> 。私鑰使用 default_ta.pem，因此 OP-TEE OS 可以不用重新編譯</p>
-<pre><code>aed564f1-960e-4117-8bb4-417b4e79c130
+<pre><code>// 修改~/aes/ta/Makefile中的BINARY (檔名)
+aed564f1-960e-4117-8bb4-417b4e79c130
 
+// 在~/aes/ta/user_ta_header_defines.h中修改TA_UUID (寫入ELF的UUID)
 #define TA_UUID
     { 0xaed564f1, 0x960e, 0x4117, \
         { 0x8b, 0xb4, 0x41, 0x7b, 0x4e, 0x79, 0xc1, 0x30} }
