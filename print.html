@@ -460,7 +460,10 @@ $ export UUID=&lt;uuid&gt;
 <h2 id="實作"><a class="header" href="#實作">實作</a></h2>
 <ul>
 <li>
-<p>使用底下 UUID 修改 LAB 1 的 aes 專案，根據<a href="lab-2/ta-signing.html">簽署操作流程</a>生成 <code>.ta</code> 。私鑰使用 default_ta.pem，因此 OP-TEE OS 可以不用重新編譯</p>
+<p>使用下方的 UUID 修改 LAB 1 的 aes 專案，並根據<a href="lab-2/ta-signing.html">簽署操作流程</a>再次生成 <code>.ta</code> (需逐步截圖)。</p>
+</li>
+<li>
+<p>私鑰使用 default_ta.pem，因此 OP-TEE OS 可以不用重新編譯</p>
 <pre><code>// 修改~/aes/ta/Makefile中的BINARY (檔名)
 aed564f1-960e-4117-8bb4-417b4e79c130
 
