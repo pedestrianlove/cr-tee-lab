@@ -1,14 +1,12 @@
 # 作業說明
 
-本次lab的作業分成實作跟回答問題兩個部份。
-
-繳交時請把實作執行的部份截圖並說明，連同回答問題的部份打成一個PDF，上傳到eeclass。
+本次作業分為實作與簡答兩部分。繳交時，實作部分只需要截圖表示；回答問題時，需簡要說明答案思路。最後，將兩部分合併為一份 PDF，上傳至 eeclass。
 
 檔名格式請按照: `HW1_<學號>`。e.g. `HW1_113062595`。
 
-## 1. 操作說明
+## 實作
 
-課程提供的 aes 專案位於目錄`~/aes`。aes 依賴於前面我們編譯完的 OP-TEE 專案，並且 OP-TEE 路徑與 aes 專案中的Makefile記錄的路徑需相符，否則會無法編譯 aes 專案。
+課程提供的 aes 專案位於目錄`~/aes`。aes 依賴於前面我們編譯完的 OP-TEE 專案，並且 aes/Makefile 需要設定 OP-TEE 的正確路徑，否則會無法編譯 aes 專案。
 <img alt="image" src="https://github.com/user-attachments/assets/bb05310f-178e-4ff0-bbf5-d32b41fcebe4" />
 
 aes 專案的結構如下：
@@ -55,9 +53,9 @@ $ make run
 $ optee_example_aes
 ```
 
-## 2. 回答問題
-- 說明 aes 程式修改的部分
-- 說明 aes CA 程式流程
-- key/op handle api 流程？程式內對應呼叫的地方？
-- TA_InvokeCommandEntryPoint 最多能傳入幾個 32 bit 的參數？
-- CA 和 TA 的共享記憶體應該屬於安全還是非安全的記憶體？
+## 簡答
+- 提供 `$ optee_example_aes` 的執行輸出的截圖。
+- 說明 aes 實作部分，修改的程式目的是什麼？以及如何依據 `ta/include/aes_ta.h` 內容進行修改？
+- 說明 aes CA 的程式流程，每個步驟是如何操作 TA？
+- 參考 [api 文件](https://globalplatform.org/specs-library/tee-internal-core-api-specification/)，說明 aes TA 使用 key/operation handle 的時候，呼叫 api 的流程以及使用的參數。
+- OP-TEE 支援 Value parameter, Memory reference 中哪些形式的參數？ TA_InvokeCommandEntryPoint 的 Value parameter 最多能傳入幾個 32-bit 的參數
