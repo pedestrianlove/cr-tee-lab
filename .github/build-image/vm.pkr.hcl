@@ -44,8 +44,38 @@ source "virtualbox-iso" "practice-vm" {
     ]
 }
 
+source "virtualbox-iso" "practice-vm-arm" {
+    vm_name = "practice-vm-arm"
+    guest_os_type = "Ubuntu_64"
+    hard_drive_discard = true
+    format = "ova"
+    iso_url = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-live-server-arm64.iso"
+    iso_checksum            = "file:https://releases.ubuntu.com/jammy/SHA256SUMS"
+    output_directory = "build"
+    headless = true
+    memory = 4096
+    cpus = 4
+    vboxmanage = [
+        ["modifyvm", "{{.Name}}", "--vram", "128"]
+    ]
+    vrdp_bind_address = "0.0.0.0"
+    communicator = "ssh"
+    ssh_pty = true
+    ssh_username = "ubuntu"
+    ssh_password = "ubuntu"
+    ssh_timeout = "10h"
+    shutdown_command  = "echo 'ubuntu' | sudo -S shutdown -P now"
+    shutdown_timeout = "10h"
+    http_directory = "cloud-init"
+    boot_command = [
+        "<wait>e",
+        "<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp ds=nocloud\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/<wait><f10><wait>"
+    ]
+}
+
+
 build {
-    sources = ["sources.virtualbox-iso.practice-vm"]
+    sources = ["sources.virtualbox-iso.practice-vm", "sources.virtualbox-iso.practice-vm-arm"]
 
     # Setup for development
     provisioner "shell" {
