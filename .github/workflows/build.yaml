@@ -44,9 +44,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - runner: ubuntu-latest
+          - runner: ubuntu-24.04
             name: practice-vm
-          - runner: ubuntu-24.04-arm
+          - runner: ubuntu-24.04
             name: practice-vm-arm
     runs-on: ${{ matrix.runner }}
     name: Run Packer on ${{ matrix.runner }}
