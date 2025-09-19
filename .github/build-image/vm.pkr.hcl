@@ -49,8 +49,8 @@ source "virtualbox-iso" "practice-vm-arm" {
     guest_os_type = "Ubuntu_64"
     hard_drive_discard = true
     format = "ova"
-    iso_url = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-live-server-arm64.iso"
-    iso_checksum            = "file:https://releases.ubuntu.com/jammy/SHA256SUMS"
+    iso_url = "https://cdimage.ubuntu.com/releases/jammy/release/ubuntu-22.04.5-live-server-arm64.iso"
+    iso_checksum            = "file:https://cdimage.ubuntu.com/releases/jammy/release/SHA256SUMS"
     output_directory = "build"
     headless = true
     memory = 4096
