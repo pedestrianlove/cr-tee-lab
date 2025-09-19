@@ -16,9 +16,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  packer:
+  prepare_release:
     runs-on: ubuntu-latest
-    name: Run Packer
+    outputs:
+      tag: ${{ steps.tag_version.outputs.new_tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create (or update) empty release for this tag
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          make_latest: true
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          prerelease: false
+
+  packer:
+    needs: prepare_release
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            name: practice-vm
+          - runner: ubuntu-24.04-arm
+            name: practice-vm-arm
+    runs-on: ${{ matrix.runner }}
+    name: Run Packer on ${{ matrix.runner }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,26 +78,17 @@ jobs:
       - name: Build packer image
         working-directory: ./.github/build-image
         run: |
-          packer build -only=virtualbox-iso.practice-vm .
+          packer build -only=virtualbox-iso.${{ matrix.name }} .
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Split the vm file in to chunks of 2G before uploading
+      - name: Split the vm file into 2G chunks
         working-directory: ./.github/build-image/build
         run: |
-          zip -s 1900m -r -0 practice-vm.zip practice-vm.ova
+          zip -s 1900m -r -0 ${{ matrix.name }}.zip ${{ matrix.name }}.ova
 
-      - name: Create a new release
+      - name: Upload assets to the existing release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          make_latest: true
-          generate_release_notes: true
+          tag_name: ${{ needs.prepare_release.outputs.tag }}
           fail_on_unmatched_files: false
-          prerelease: false
           files: |
-            .github/build-image/build/practice-vm.z*
+            .github/build-image/build/${{ matrix.name }}.z*
