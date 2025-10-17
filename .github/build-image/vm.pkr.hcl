@@ -24,6 +24,7 @@ source "virtualbox-iso" "practice-vm" {
     iso_checksum            = "file:https://releases.ubuntu.com/jammy/SHA256SUMS"
     output_directory = "build"
     headless = true
+    disk_size = 81920
     memory = 4096
     cpus = 4
     vboxmanage = [
