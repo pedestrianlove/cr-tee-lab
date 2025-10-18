@@ -31,7 +31,6 @@ jobs:
           sudo modprobe -r kvm_amd kvm
           sudo lsmod | grep -E '(^kvm|kvm_)' || echo "KVM modules unloaded"
           sudo lsof /dev/kvm 2>/dev/null || echo "No process is using /dev/kvm"
-          sudo modprobe kvm_amd kvm
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
