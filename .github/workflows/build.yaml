@@ -27,6 +27,10 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y virtualbox virtualbox-guest-additions-iso
+          sudo lsmod | grep kvm
+          sudo modprobe -r kvm_amd kvm
+          sudo lsmod | grep -E '(^kvm|kvm_)' || echo "KVM modules unloaded"
+          sudo lsof /dev/kvm 2>/dev/null || echo "No process is using /dev/kvm"
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
