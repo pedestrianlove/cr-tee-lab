@@ -352,6 +352,19 @@ $ make run
 <li>TEE Client API：<a href="https://globalplatform.org/specs-library/tee-client-api-specification/">DOC</a></li>
 <li>TEE internal API：<a href="https://globalplatform.org/specs-library/tee-internal-core-api-specification/">DOC</a></li>
 </ul>
+<h2 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h2>
+<ul>
+<li>如果遇到問題想要重抓OPTEE的source code，可以執行下列指令重新抓取OPTEE:</li>
+</ul>
+<pre><code class="language-bash">#在家目錄/home/ubuntu下
+rm -rf optee
+mkdir optee &amp;&amp; cd optee
+yes | repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
+repo sync -j4
+</code></pre>
+<ul>
+<li>完成後繼續按<a href="lab-1/run-optee.html">教學</a>的指示執行編譯系統的步驟即可。</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="簡介"><a class="header" href="#簡介">簡介</a></h1>
 <blockquote>
 <p>OP-TEE 文件：<a href="https://optee.readthedocs.io/en/latest/architecture/trusted_applications.html#ree-filesystem-ta">REE Filesystem TA</a></p>
