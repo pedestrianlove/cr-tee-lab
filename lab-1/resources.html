@@ -190,6 +190,7 @@ rm -rf optee
 mkdir optee &amp;&amp; cd optee
 yes | repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
 repo sync -j4
+rm -rf optee_examples/aes
 </code></pre>
 <ul>
 <li>完成後繼續按<a href="run-optee.html">教學</a>的指示執行編譯系統的步驟即可。</li>
