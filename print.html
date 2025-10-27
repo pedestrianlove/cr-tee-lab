@@ -357,9 +357,7 @@ $ make run
 <li>如果遇到問題想要重抓OPTEE的source code，可以執行下列指令重新抓取OPTEE:</li>
 </ul>
 <pre><code class="language-bash">#在家目錄/home/ubuntu下
-rm -rf optee
-mkdir optee &amp;&amp; cd optee
-yes | repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
+repo init
 repo sync -j4
 rm -rf optee_examples/aes
 </code></pre>
