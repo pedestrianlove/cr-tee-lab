@@ -181,18 +181,6 @@
 <li>TEE Client API：<a href="https://globalplatform.org/specs-library/tee-client-api-specification/">DOC</a></li>
 <li>TEE internal API：<a href="https://globalplatform.org/specs-library/tee-internal-core-api-specification/">DOC</a></li>
 </ul>
-<h2 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h2>
-<ul>
-<li>如果遇到問題想要重抓OPTEE的source code，可以執行下列指令重新抓取OPTEE:</li>
-</ul>
-<pre><code class="language-bash">#在optee目錄~/optee下
-rm -rf ~/optee/.repo
-repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
-repo sync ~/optee/optee_rust
-</code></pre>
-<ul>
-<li>完成後繼續按<a href="run-optee.html">教學</a>的指示執行編譯系統的步驟即可。</li>
-</ul>
 
                     </main>
 
