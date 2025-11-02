@@ -18,3 +18,8 @@
 - [Subkey驗證及載入流程](./lab-2/subkey-loading.md)
 - [TA簽署流程](./lab-2/ta-signing.md)
 - [作業說明](./lab-2/assignment.md)
+
+# Lab 3: DarkneTZ
+- [建置DarkneTZ](./lab-3/build-darknetz.md)
+- [加密權重](./lab-3/encrypt-weights.md)
+- [作業說明](./lab-3/assignment.md)
