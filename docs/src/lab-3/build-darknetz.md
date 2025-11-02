@@ -16,7 +16,7 @@ git clone https://github.com/NTHU-SCOPELAB/cr-tee-darknetz-dataset.git
 
 ```bash
 mkdir ~/optee/optee_examples/darknetz
-cp -a $PATH_darknetz$/. ~optee/optee_examples/darknetz/
+cp -a $PATH_darknetz$/. ~/optee/optee_examples/darknetz/
 ```
 
 #### 3.將datasets放到root下

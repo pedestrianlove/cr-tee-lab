@@ -91,7 +91,7 @@ darknetp classifier move -pp_start 0 -pp_end 10 cfg/mnist.dataset cfg/mnist_lene
 #### 5. 將轉換好的權重保存到適當的位子
 
 ```sh
-cp models/mnist/mnist_lenet_ta.weights mnt/host/out-br/target/root/models/mnist
+cp models/mnist/mnist_lenet_ta.weights /mnt/host/out-br/target/root/models/mnist
 ```
 
 #### 6. 將`parser_TA.c`檔案的`load_weights_TA`中的`aes_cbc_TA`註解取消
