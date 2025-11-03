@@ -1,7 +1,7 @@
 # 建置DarkneTZ
 
 ## DarkneTZ介紹
-[DarkneTZ](https://github.com/mofanv/darknetz/blob/master/README.md)是一個在 TrustZone 中執行DNN模型的應用程式。
+[DarkneTZ](https://github.com/mofanv/darknetz/blob/master/README.md) 提出一個方案，將 DNN 模型部署於 OP-TEE 系統中，如此一來，便可在不犧牲機密性的前提下，執行模型的訓練與推論。
 
 ## 建置步驟
 #### 1.複製程式碼與資料集
@@ -21,7 +21,7 @@ cp -a $PATH_darknetz$/. ~/optee/optee_examples/darknetz/
 
 #### 3.將datasets放到root下
 
-`$PATH_tz_datasets$`為`cr-tee-darknetz-dataset`所在的路徑
+`$PATH_tz_datasets$`為`cr-tee-darknetz-dataset`所在的路徑，~/optee/out-br/target/root/ 則會作為 REE rootfs 的內容來源
 ```bash
 cp -a $PATH_tz_datasets$/. ~/optee/out-br/target/root/
 ```
