@@ -19,6 +19,7 @@
 - [TA簽署流程](./lab-2/ta-signing.md)
 - [作業說明](./lab-2/assignment.md)
 
+---
 # Lab 3: DarkneTZ
 - [建置DarkneTZ](./lab-3/build-darknetz.md)
 - [加密權重](./lab-3/encrypt-weights.md)
