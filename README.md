@@ -1,4 +1,5 @@
 # TEE LAB
+[![OPTEE Test Environment](https://github.com/NTHU-SCOPELAB/cr-tee-lab/actions/workflows/test-optee-setup.yaml/badge.svg)](https://github.com/NTHU-SCOPELAB/cr-tee-lab/actions/workflows/test-optee-setup.yaml)
 
 ## 1. 下載VM映像檔，並匯入virtualbox:
 - https://github.com/NTHU-SCOPELAB/cr-tee-lab/releases/latest
