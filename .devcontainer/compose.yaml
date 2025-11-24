@@ -1,0 +1,8 @@
+services:
+  cli:
+    image: "ghcr.io/pedestrianlove/cr-tee-lab:latest"
+    privileged: true
+    volumes:
+      - ..:/workspaces/cli
+      - /sys/kernel/tracing:/sys/kernel/tracing:ro
+      - /sys/kernel/debug:/sys/kernel/debug:ro
