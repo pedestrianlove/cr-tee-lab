@@ -37,8 +37,8 @@ RUN rm -rf optee_examples/aes
 RUN mkdir -p /root/optee/build
 
 WORKDIR /root/optee/build
-RUN make -j3 toolchains
-RUN make -j$(nproc) check
+RUN make -j$(nproc) toolchains
+RUN make -j$(nproc)
 
 # Prevent container from exiting early.
 CMD ["sleep", "infinity"]
