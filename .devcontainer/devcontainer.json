@@ -3,7 +3,7 @@
   "service": "cli",
   "remoteUser": "root",
   "shutdownAction": "stopCompose",
-  "workspaceFolder": "/workspaces/cli",
+  "workspaceFolder": "/root",
   "dockerComposeFile": "compose.yaml",
 
   "customizations": {
