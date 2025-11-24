@@ -5,6 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/NTHU-SCOPELAB/cr-tee-l
 RUN mkdir -p /workspace/cli
 
 # Install base image
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && apt upgrade -y && apt install -y adb acpica-tools autoconf automake bc bison build-essential \
             ccache cpio cscope curl device-tree-compiler e2tools expect fastboot flex \
             ftp-upload gdisk git libattr1-dev libcap-ng-dev libfdt-dev libftdi-dev \
