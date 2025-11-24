@@ -2,8 +2,6 @@ FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.source="https://github.com/NTHU-SCOPELAB/cr-tee-lab"
 
-RUN mkdir -p /workspace/cli
-
 # Install base image
 ENV DEBIAN_FRONTEND=noninteractive
 ENV FORCE_UNSAFE_CONFIGURE=1
@@ -20,8 +18,8 @@ RUN apt update -y && apt upgrade -y && apt install -y adb acpica-tools autoconf 
 RUN apt install -y tmux
 
 # Setup optee tools
-RUN curl -L https://storage.googleapis.com/git-repo-downloads/repo > ~/repo
-RUN mv ~/repo /bin/repo
+RUN curl -L https://storage.googleapis.com/git-repo-downloads/repo > /root/repo
+RUN mv /root/repo /bin/repo
 RUN chmod a+x /bin/repo
 
 # Configure git identity
@@ -29,14 +27,16 @@ RUN git config --global user.name 'SCOPELAB'
 RUN git config --global user.email 'whoami@scope.lab'
 
 # Pull the source code
-RUN mkdir ~/optee
-WORKDIR ~/optee
+RUN mkdir -p /root/aes
+COPY . /root/aes
+RUN mkdir -p /root/optee
+WORKDIR /root/optee
 RUN yes | repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
 RUN repo sync -j4
 RUN rm -rf optee_examples/aes
-RUN mkdir -p ~/optee/build
+RUN mkdir -p /root/optee/build
 
-WORKDIR ~/optee/build
+WORKDIR /root/optee/build
 RUN make -j3 toolchains
 RUN make -j$(nproc) check
 
