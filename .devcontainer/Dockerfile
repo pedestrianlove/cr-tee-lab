@@ -6,6 +6,8 @@ RUN mkdir -p /workspace/cli
 
 # Install base image
 ENV DEBIAN_FRONTEND=noninteractive
+ENV FORCE_UNSAFE_CONFIGURE=1
+
 RUN apt update -y && apt upgrade -y && apt install -y adb acpica-tools autoconf automake bc bison build-essential \
             ccache cpio cscope curl device-tree-compiler e2tools expect fastboot flex \
             ftp-upload gdisk git libattr1-dev libcap-ng-dev libfdt-dev libftdi-dev \
@@ -27,11 +29,16 @@ RUN git config --global user.name 'SCOPELAB'
 RUN git config --global user.email 'whoami@scope.lab'
 
 # Pull the source code
-RUN mkdir ~/optee && cd ~/optee
+RUN mkdir ~/optee
+WORKDIR ~/optee
 RUN yes | repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
 RUN repo sync -j4
 RUN rm -rf optee_examples/aes
 RUN mkdir -p ~/optee/build
+
+WORKDIR ~/optee/build
+RUN make -j3 toolchains
+RUN make -j$(nproc) check
 
 # Prevent container from exiting early.
 CMD ["sleep", "infinity"]
